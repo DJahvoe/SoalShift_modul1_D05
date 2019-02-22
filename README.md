@@ -2,7 +2,7 @@
 
 Keterangan : pastikan seluruh file .sh untuk tiap jawaban telah mendapatkan chmod, dengan syntax chmod +x [NamaFile].sh untuk memungkinkan jalannya crontab
 ----------SOAL1------------
-Source Code soal1.sh
+- Source Code soal1.sh
 
 #!/bin/bash
 
@@ -30,7 +30,7 @@ Penjelasan :
 
 
 ----------SOAL2------------
-Syntax fokus utama untuk soal2 :
+- Syntax fokus utama untuk soal2 :
 (1) awk -F "," '{if (condition)storage[group]+=target;}END{for (x in storage)print x":"storage[x]}' namafile | sort -t, -nk'x' -r | awk 'NR==1'
 (2) $(echo $hasilawk | cut -d':' -f'x')
 
@@ -68,27 +68,27 @@ Langkah Program :
 
 ----------SOAL4------------
 Syntax fokus utama untuk soal4
-(1) ${namaarray[*]}
-(2) ${namaarray[@]:(-(x))}
-(3) ${namaarray[@]:0:x}
-(4) date + (%H / %M / %d / %m / %Y)
-(5) tr [SET1] [SET2]
+1) ${namaarray[*]}
+2) ${namaarray[@]:(-(x))}
+3) ${namaarray[@]:0:x}
+4) date + (%H / %M / %d / %m / %Y)
+5) tr [SET1] [SET2]
 
 Penjelasan tiap syntax
-(1) ${namaarray[*]} -> mengambil seluruh value di dalam array
-(2) ${namaarray[@]:(-(x))} -> mengambil isi array sebanyak x dari belakang
+1) ${namaarray[*]} -> mengambil seluruh value di dalam array
+2) ${namaarray[@]:(-(x))} -> mengambil isi array sebanyak x dari belakang
 	contoh arrayX berisi 1 2 3 4 5
 	maka ${arrayX[@]:(-2)} mengambil nilai 4 dan 5 dari arrayX
-(3) ${namaarray[@]:0:x} -> mengambil isi array sebanyak x dimulai dari index 0
+3) ${namaarray[@]:0:x} -> mengambil isi array sebanyak x dimulai dari index 0
 	contoh arrayX berisi 1 2 3 4 5
 	maka ${arrayX[@]:0:2} mengambil nilai 1 dan 2 dari arrayX
-(4) date + (value) -> mengextract nilai date sesuai value
-	"%H" -> mengambil Hour (Jam)
-	"%M" -> mengambil Minute (Menit)
-	"%d" -> mengambil dayofthemonth (Tanggal)
-	"%m" -> mengambil month (Bulan)
-	"%Y" -> mengambil Year (Tahun)
-(5) tr [SET1] [SET2] -> mengubah pattern SET1 menjadi sesuai dengan SET2
+4) date + (value) -> mengextract nilai date sesuai value
+	- "%H" -> mengambil Hour (Jam)
+	- "%M" -> mengambil Minute (Menit)
+	- "%d" -> mengambil dayofthemonth (Tanggal)
+	- "%m" -> mengambil month (Bulan)
+	- "%Y" -> mengambil Year (Tahun)
+5) tr [SET1] [SET2] -> mengubah pattern SET1 menjadi sesuai dengan SET2
 	misal tr [ABCDE] [CDEAB] untuk string ACE, akan berubah menjadi CEB
 
 Langkah Program :
@@ -119,7 +119,7 @@ Fokus soal5 :
 - Mencari syslog yang memenuhi syarat
 - Membuat crontab
 
-Mengubah setting log :
+- Mengubah setting log :
 1) Mengubah setting config file dengan menulis 'sudo -e /etc/bash.bashrc'
 2) Masukkan password user
 3) Memasukkan command pada bagian bawah file tersebut, yaitu
@@ -132,16 +132,16 @@ Mengubah setting log :
 9) Menambahkan /var/log/commands.log
 9) Dengan menjalankan seluruh perintah di atas, tiap command yang dimasukkan oleh user akan direcord di dalam /var/log/commands.log
 
-Mencari syslog dengan syarat, Source code:
+- Mencari syslog dengan syarat, Source code:
 
 #!/bin/bash
  awk '{if(!/[Ss][Uu][Dd][Oo]/ && /[Cc][Rr][Oo][Nn]/ && NF<13)print;}' /var/log/commands.log > ~/modul1/log.txt
 
-*Penjelasan
+- *Penjelasan
 !/[Ss][Uu][Dd][Oo]/ -> Pattern regex yang memastikan tidak ada kombinasi upper-case maupun lower-case dari string 'sudo'
 /[Cc][Rr][Oo][Nn]/ -> Pattern regex yang memastikan didapatkannya kombinasi upper-case maupun lower-case dari string 'cron'
 NF<13 -> Memastikan panjang Field berjumlah kurang dari 13
 
-Membuat crontab :
+- Membuat crontab :
 2-30/6 * * * * [Direktori File .sh] -> menjalankan tiap 6 menit dalam rentang menit ke 2-30
 
