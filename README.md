@@ -1,6 +1,7 @@
 # SoalShift_modul1_D5
 
 Keterangan : pastikan seluruh file .sh untuk tiap jawaban telah mendapatkan chmod, dengan syntax chmod +x [NamaFile].sh untuk memungkinkan jalannya crontab<br>
+
 ----------SOAL1------------
 - Source Code soal1.sh
 
@@ -13,7 +14,7 @@ do
         let "counter++" 
 done
 
-Target dalam penyelesaian :
+Target penyelesaian :
 - Melakukan konversi file yang tersedia dengan decode base64 (didapatkan hex dump)
 - Melakukan konversi file hexdump dan mendapatkan output .jpg
 
@@ -30,9 +31,14 @@ Penjelasan :
 
 
 ----------SOAL2------------
-- Syntax fokus utama untuk soal2 :
+- Source Code soal2.sh
+
 	1) awk -F "," '{if (condition)storage[group]+=target;}END{for (x in storage)print x":"storage[x]}' namafile | sort -t, -nk'x' -r | awk 'NR==1'
 	2) $(echo $hasilawk | cut -d':' -f'x')
+
+Target penyelesaian :
+- Melakukan konversi file yang tersedia dengan decode base64 (didapatkan hex dump)
+- Melakukan konversi file hexdump dan mendapatkan output .jpg
 
 Penjelasan tiap syntax :
 1)
@@ -48,7 +54,8 @@ Penjelasan tiap syntax :
 	-r -> berfungsi untuk reverse, sort yang awalnya ASCENDING berubah menjadi DESCENDING
 - awk 'NR==1' -> mengambil record sebanyak x teratas (NR==1 mengambil record paling atas)
 
-2) - echo $hasilawk -> mendapatkan hasil dari awk
+2) 
+- echo $hasilawk -> mendapatkan hasil dari awk
 - cut -d':' -> memotong string hasilawk, dipisahkan dengan titik dua
 - -f'x' -> mengambil nilai ke x (contoh string "Test:Hello:World", untuk -f1 akan terambil Test, -f2 Hello)
 
@@ -64,8 +71,28 @@ Langkah Program :
 	if condition true : jumlahkan Quantity groupby Product
 
 ----------SOAL3------------<br>
-Fokus soal3
-1) Generate random password
+- Source Code soal1.sh
+
+#!/bin/bash
+PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 |head -c 12 )
+name=password
+i=1
+while [[ -e "$name""$i".txt ]] ; do
+ while IFS='' read -r line || [[ -n "$line" ]]; do
+  if [ "$line" = "$PASSWORD" ]
+  then
+  PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 |head -c 12 )
+  #PASSWORD=$(echo "ganti pwd")
+  #echo $PASSWORD
+  fi
+ done < logpwd.txt
+ let i++
+done
+echo $PASSWORD >> logpwd.txt
+echo $PASSWORD >> "$name""$i".txt
+
+- Target penyelesaian:
+1) Generate random password 12 karakter dengan ketentuan huruf besar, kecil, dan angka
 2) Cek File yang sudah ada
 3) Cek Password yang sudah pernah tergenerate sebelumnya
 
@@ -87,6 +114,7 @@ Penjelasan
 		
 ----------SOAL4------------<br>
 Syntax fokus utama untuk soal4
+
 1) ${namaarray[*]}
 2) ${namaarray[@]:(-(x))}
 3) ${namaarray[@]:0:x}
