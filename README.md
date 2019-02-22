@@ -26,16 +26,16 @@ Penjelasan :
 	- ~/FotoNature/fotonature"$counter".jpg (hasil decode hexdump disimpan ke dalam folder dengan extensi .jpg sesuai dengan nama fotonature diikuti dengan counter)
 	- let "counter++" (increment counter)
 4) pada bagian crontab -e
-14 14 14 2 5 [Direktori File.sh] -> menunjukkan tiap pukul 14:14 14 Februari, atau tiap Jum'at akan dijalankan
+	- 14 14 14 2 5 [Direktori File.sh] -> menunjukkan tiap pukul 14:14 14 Februari, atau tiap Jum'at akan dijalankan
 
 
 ----------SOAL2------------
 - Syntax fokus utama untuk soal2 :
-(1) awk -F "," '{if (condition)storage[group]+=target;}END{for (x in storage)print x":"storage[x]}' namafile | sort -t, -nk'x' -r | awk 'NR==1'
-(2) $(echo $hasilawk | cut -d':' -f'x')
+	1) awk -F "," '{if (condition)storage[group]+=target;}END{for (x in storage)print x":"storage[x]}' namafile | sort -t, -nk'x' -r | awk 'NR==1'
+	2) $(echo $hasilawk | cut -d':' -f'x')
 
 Penjelasan tiap syntax :
-(1)
+1)
 - -F "," -> Field Separator dipisahkan dengan koma (,)
 - if (condition) -> condition sesuai dengan soal
 - storage[group]+=target -> array yang menyimpan key berupa group dengan isi target, contoh: jika ingin menjumlah total Quantity pada kolom ke 10 pada file, dan dikelompokkan berdasarkan Retailer Country pada kolom ke 1 pada file, maka syntaxnya
@@ -48,7 +48,7 @@ Penjelasan tiap syntax :
 	-r -> berfungsi untuk reverse, sort yang awalnya ASCENDING berubah menjadi DESCENDING
 - awk 'NR==1' -> mengambil record sebanyak x teratas (NR==1 mengambil record paling atas)
 
-(2)
+2)
 - echo $hasilawk -> mendapatkan hasil dari awk
 - cut -d':' -> memotong string hasilawk, dipisahkan dengan titik dua
 - -f'x' -> mengambil nilai ke x (contoh string "Test:Hello:World", untuk -f1 akan terambil Test, -f2 Hello)
@@ -77,11 +77,11 @@ Syntax fokus utama untuk soal4
 Penjelasan tiap syntax
 1) ${namaarray[*]} -> mengambil seluruh value di dalam array
 2) ${namaarray[@]:(-(x))} -> mengambil isi array sebanyak x dari belakang
-	contoh arrayX berisi 1 2 3 4 5
-	maka ${arrayX[@]:(-2)} mengambil nilai 4 dan 5 dari arrayX
+	- contoh arrayX berisi 1 2 3 4 5
+	- maka ${arrayX[@]:(-2)} mengambil nilai 4 dan 5 dari arrayX
 3) ${namaarray[@]:0:x} -> mengambil isi array sebanyak x dimulai dari index 0
-	contoh arrayX berisi 1 2 3 4 5
-	maka ${arrayX[@]:0:2} mengambil nilai 1 dan 2 dari arrayX
+	- contoh arrayX berisi 1 2 3 4 5
+	- maka ${arrayX[@]:0:2} mengambil nilai 1 dan 2 dari arrayX
 4) date + (value) -> mengextract nilai date sesuai value
 	- "%H" -> mengambil Hour (Jam)
 	- "%M" -> mengambil Minute (Menit)
@@ -89,7 +89,7 @@ Penjelasan tiap syntax
 	- "%m" -> mengambil month (Bulan)
 	- "%Y" -> mengambil Year (Tahun)
 5) tr [SET1] [SET2] -> mengubah pattern SET1 menjadi sesuai dengan SET2
-	misal tr [ABCDE] [CDEAB] untuk string ACE, akan berubah menjadi CEB
+	- misal tr [ABCDE] [CDEAB] untuk string ACE, akan berubah menjadi CEB
 
 Langkah Program :
 1) Inisialisasi array alphabet lower dan upper-case
@@ -98,20 +98,20 @@ Langkah Program :
 4) Inisialisasi array yang akan digunakan sebagai SET2
 5) Extract lower-case dan upper-case array dengan ketentuan
 	- ${inisial[@]:(-(26-geser))} -> untuk mengambil isi array sebanyak 26-geser alphabet dari belakang
-	jika value geser adalah 2, maka akan terambil alphabet c sampai dengan z
+	- jika value geser adalah 2, maka akan terambil alphabet c sampai dengan z
 	- ${inisial[@]:0:$geser} -> untuk mengambil isi array sebanyak geser alphabet dari index 0
-	jika value geser adalah 2, maka akan terambil alphabet a dan b
+	- jika value geser adalah 2, maka akan terambil alphabet a dan b
 
-	sehingga isi dari array SET2 menjadi C-ZAB
+	- sehingga isi dari array SET2 menjadi C-ZAB
 
 6) Extract attribute date yang dibutuhkan untuk penamaan file
 7) Merubah syslog dengan translate tiap huruf dalam syslog
-	tr "${inisialkombi[*]}" "${cipher[*]}"
-	misal untuk value geser adalah 5, maka akan didapatkan
-	insialkombi = [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]
-	cipher = [fghijklmnopqrstuvwxyzabcdeFGHIJKLMNOPQRSTUVWXYZABCDE]
+	- tr "${inisialkombi[*]}" "${cipher[*]}"
+	- misal untuk value geser adalah 5, maka akan didapatkan
+	- insialkombi = [abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]
+	- cipher = [fghijklmnopqrstuvwxyzabcdeFGHIJKLMNOPQRSTUVWXYZABCDE]
 8) Membuat syarat crontab per jam
-	0 * * * * [Direktori File.sh] -> eksekusi file per jam
+	- 0 * * * * [Direktori File.sh] -> eksekusi file per jam
 
 ----------SOAL5------------
 Fokus soal5 :
@@ -123,7 +123,7 @@ Fokus soal5 :
 1) Mengubah setting config file dengan menulis 'sudo -e /etc/bash.bashrc'
 2) Masukkan password user
 3) Memasukkan command pada bagian bawah file tersebut, yaitu
-	export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
+	- export PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL]"'
 4) Melakukan setting logging untuk local6 dengan membuka 'sudo -e /etc/rsyslog.d/bash.conf'
 5) Menambahkan 'local6.* /var/log/commands.log' di dalam file tersebut
 6) Restart rsyslog dengan 'sudo service rsyslog restart'
@@ -138,10 +138,10 @@ Fokus soal5 :
  awk '{if(!/[Ss][Uu][Dd][Oo]/ && /[Cc][Rr][Oo][Nn]/ && NF<13)print;}' /var/log/commands.log > ~/modul1/log.txt
 
 - *Penjelasan
-!/[Ss][Uu][Dd][Oo]/ -> Pattern regex yang memastikan tidak ada kombinasi upper-case maupun lower-case dari string 'sudo'
-/[Cc][Rr][Oo][Nn]/ -> Pattern regex yang memastikan didapatkannya kombinasi upper-case maupun lower-case dari string 'cron'
-NF<13 -> Memastikan panjang Field berjumlah kurang dari 13
+	- !/[Ss][Uu][Dd][Oo]/ -> Pattern regex yang memastikan tidak ada kombinasi upper-case maupun lower-case dari string 'sudo'
+	- /[Cc][Rr][Oo][Nn]/ -> Pattern regex yang memastikan didapatkannya kombinasi upper-case maupun lower-case dari string 'cron'
+	- NF<13 -> Memastikan panjang Field berjumlah kurang dari 13
 
 - Membuat crontab :
-2-30/6 * * * * [Direktori File .sh] -> menjalankan tiap 6 menit dalam rentang menit ke 2-30
+	- 2-30/6 * * * * [Direktori File .sh] -> menjalankan tiap 6 menit dalam rentang menit ke 2-30
 
