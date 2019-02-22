@@ -71,7 +71,7 @@ Langkah Program :
 	if condition true : jumlahkan Quantity groupby Product
 
 ----------SOAL3------------<br>
-- Source Code soal1.sh
+- Source Code soal3.sh
 
 #!/bin/bash
 PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 |head -c 12 )
