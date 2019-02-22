@@ -1,6 +1,6 @@
 # SoalShift_modul1_D5
 
-Keterangan : pastikan seluruh file .sh untuk tiap jawaban telah mendapatkan chmod, dengan syntax chmod +x [NamaFile].sh untuk memungkinkan jalannya crontab
+Keterangan : pastikan seluruh file .sh untuk tiap jawaban telah mendapatkan chmod, dengan syntax chmod +x [NamaFile].sh untuk memungkinkan jalannya crontab<br>
 ----------SOAL1------------
 - Source Code soal1.sh
 
