@@ -65,7 +65,27 @@ Langkah Program :
 	if condition true : jumlahkan Quantity groupby Product
 
 ----------SOAL3------------
+Fokus soal4
+1) Generate random password
+2) Cek File yang sudah ada
+3) Cek Password yang sudah pernah tergenerate sebelumnya
 
+Penjelasan
+1) Generate random password, dihandle dengan cara
+	- PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 |head -c 12)
+		- /dev/urandom -> merupakan direktori library berisi random character
+		- tr -dc A-Za-z0-9 -> delete dari directory di atas, complement dari set A-Za-z0-9
+		- head -c 12 -> mengambil dari directory sebanyak 12 characters
+2) Cek File
+	- while [[ -e "$name""$i".txt ]] ... let i++;
+		- mengecek apakah nama file sudah ada atau tidak
+		- jika tidak, kode angka pada nama file akan bertambah 1
+3) Cek Password
+	-  while IFS='' read -r line || [[ -n "$line" ]]; do if [ "$line" = "$PASSWORD" ] then [PASSWORD=$(< /dev/urandom tr -dc A-Za-z0-9 |head -c 12)
+		- while IFS='' read -r line -> berfungsi untuk melakukan iterasi ke tiap file yang ada
+		- [[ -n "$line" ]] -> mengextract line dalam tiap file yang diiterasi
+		- if[ "$line" = $PASSWORD" ] ..... -> jika ditemukan password yang sama, maka akan digenerate password baru
+		
 ----------SOAL4------------
 Syntax fokus utama untuk soal4
 1) ${namaarray[*]}
