@@ -48,8 +48,7 @@ Penjelasan tiap syntax :
 	-r -> berfungsi untuk reverse, sort yang awalnya ASCENDING berubah menjadi DESCENDING
 - awk 'NR==1' -> mengambil record sebanyak x teratas (NR==1 mengambil record paling atas)
 
-2)
-- echo $hasilawk -> mendapatkan hasil dari awk
+2) - echo $hasilawk -> mendapatkan hasil dari awk
 - cut -d':' -> memotong string hasilawk, dipisahkan dengan titik dua
 - -f'x' -> mengambil nilai ke x (contoh string "Test:Hello:World", untuk -f1 akan terambil Test, -f2 Hello)
 
@@ -64,8 +63,8 @@ Langkah Program :
 	condition : $7 memenuhi 2012 dan $1 memenuhi Jawaban2a dan $4 memenuhi Jawaban2b
 	if condition true : jumlahkan Quantity groupby Product
 
-----------SOAL3------------
-Fokus soal4
+----------SOAL3------------<br>
+Fokus soal3
 1) Generate random password
 2) Cek File yang sudah ada
 3) Cek Password yang sudah pernah tergenerate sebelumnya
@@ -86,7 +85,7 @@ Penjelasan
 		- [[ -n "$line" ]] -> mengextract line dalam tiap file yang diiterasi
 		- if[ "$line" = $PASSWORD" ] ..... -> jika ditemukan password yang sama, maka akan digenerate password baru
 		
-----------SOAL4------------
+----------SOAL4------------<br>
 Syntax fokus utama untuk soal4
 1) ${namaarray[*]}
 2) ${namaarray[@]:(-(x))}
@@ -133,7 +132,7 @@ Langkah Program :
 8) Membuat syarat crontab per jam
 	- 0 * * * * [Direktori File.sh] -> eksekusi file per jam
 
-----------SOAL5------------
+----------SOAL5------------<br>
 Fokus soal5 :
 - Mengubah setting dari system untuk mendapatkan log dari command user
 - Mencari syslog yang memenuhi syarat
