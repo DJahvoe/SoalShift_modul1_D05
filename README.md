@@ -64,6 +64,8 @@ Langkah Program :
 	condition : $7 memenuhi 2012 dan $1 memenuhi Jawaban2a dan $4 memenuhi Jawaban2b
 	if condition true : jumlahkan Quantity groupby Product
 
+----------SOAL3------------
+
 ----------SOAL4------------
 Syntax fokus utama untuk soal4
 (1) ${namaarray[*]}
